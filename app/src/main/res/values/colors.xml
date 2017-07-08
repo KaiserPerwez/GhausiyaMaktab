@@ -8,4 +8,6 @@
     <color name="green_forest">#008000</color>
     <color name="book_loading_page">#22000000</color>
     <color name="titleBarColor">#aa669900</color>
+
+    <color name="editTextLogin">#555555</color>
 </resources>

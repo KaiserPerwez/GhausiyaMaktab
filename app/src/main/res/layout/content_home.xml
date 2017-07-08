@@ -5,9 +5,128 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.qtechie.ghausiyamaktab.HomeActivity"
+    tools:context=".HomeActivity"
     tools:showIn="@layout/app_bar_home"
     android:background="@drawable/circle_green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:id="@+id/linearLayout2">
+
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner_mainClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="5.2"
+            android:gravity="center"
+            android:hint="Select Main-Class"
+            android:isScrollContainer="true"
+            android:lines="1"
+            android:nestedScrollingEnabled="true"
+            android:scrollHorizontally="true"
+            android:scrollIndicators="top"
+            android:scrollbarStyle="insideOverlay"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="13sp"
+            app:ms_arrow_tint="@android:color/white"
+            app:ms_background_color="#aa000000"
+            app:ms_dropdown_height="fill_parent"
+            app:ms_text_color="@android:color/white" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner_subClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="5.2"
+            android:gravity="center"
+            android:hint="Select Sub-Class "
+            android:isScrollContainer="true"
+            android:lines="1"
+            android:nestedScrollingEnabled="true"
+            android:scrollHorizontally="true"
+            android:scrollIndicators="top"
+            android:scrollbarStyle="insideOverlay"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="13sp"
+            app:ms_arrow_tint="@android:color/white"
+            app:ms_background_color="#aa000000"
+            app:ms_dropdown_height="fill_parent"
+            app:ms_text_color="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingRight="10dp"
+        android:layout_weight="5.2"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayout2"
+        android:gravity="bottom"
+        android:id="@+id/linearLayout3"
+        android:background="#99000000">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sl.No"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="15dp"
+            style="?android:attr/listSeparatorTextViewStyle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="NAME"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="15dp"
+            style="?android:attr/listSeparatorTextViewStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRESENT"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="15dp"
+            style="?android:attr/listSeparatorTextViewStyle"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/attendance_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout3"
+        android:paddingTop="10dp"
+        android:background="#99000000"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="2dp"/>
 
 
 </RelativeLayout>

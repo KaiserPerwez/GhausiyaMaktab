@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10"
+    android:id="@+id/attendance_list_item"
+    android:gravity="bottom">
+
+    <TextView
+        android:id="@+id/txt_roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_weight="1"
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:gravity="left"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="8.8"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textSize="15dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        style="@android:style/Widget.Holo.CompoundButton.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_weight="0.5"
+        android:height="12dp"
+        android:checked="true"
+        android:gravity="right|bottom"
+        android:buttonTint="@android:color/white"/>
+</LinearLayout>

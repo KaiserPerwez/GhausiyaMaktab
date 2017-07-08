@@ -8,13 +8,20 @@ import java.util.Date;
  */
 
 public class CustomUtils {
+
     public static String getCurrentTimeHHMMSS(){
         String time= new SimpleDateFormat("HH:mm:ss").format(new Date());
-        if(Integer.parseInt(time.substring(0,2))>11){
-            return  time.concat(" PM");
+        int hour=Integer.parseInt(time.substring(0,2));
+        if(hour>11){
+            hour-=12;
+            if(hour==0)
+                return  "00"+time.substring(2).concat(" PM");
+            else
+                return  hour+time.substring(2).concat(" PM");
         }
         else{
             return  time.concat(" AM");
         }
     }
+
 }
