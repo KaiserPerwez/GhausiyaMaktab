@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FFFFFF</color>
 
     <color name="book_loading_background">#00000000</color>
     <color name="green_forest">#008000</color>
@@ -10,4 +10,13 @@
     <color name="titleBarColor">#aa669900</color>
 
     <color name="editTextLogin">#555555</color>
+
+
+    <!-- material design -->
+        <!--<color name="colorPrimary">#F50057</color>-->
+        <!--<color name="colorPrimaryDark">#C51162</color>-->
+        <color name="textColorPrimary">#FFFFFF</color>
+        <color name="windowBackground">#FFFFFF</color>
+        <color name="navigationBarColor">#000000</color>
+        <!--<color name="colorAccent">#FF80AB</color>-->
 </resources>

@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 23
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.qtechie.ghausiyamaktab"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -28,13 +28,28 @@ dependencies {
     //custom github libraries by kaiser
     //for bookflipping animated progressbar
     //for animated dots progressbar
-    compile 'com.android.support:appcompat-v7:25.3.1'
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.victor:lib:1.0.4'
 
     compile 'com.eyalbira.loadingdots:loading-dots:1.0.2'
     compile 'com.jaredrummler:material-spinner:1.1.0'
+    compile 'com.ramotion.foldingcell:folding-cell:1.2.1'
 
-    compile 'com.android.support:design:25.3.1'
+
+
+    //material design
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+
+    //https://github.com/florent37/MaterialTextField
+    compile 'com.github.florent37:materialtextfield:1.0.2'
+
+
+
+
     testCompile 'junit:junit:4.12'
 }

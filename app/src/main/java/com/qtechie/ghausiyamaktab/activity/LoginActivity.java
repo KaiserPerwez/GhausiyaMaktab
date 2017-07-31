@@ -1,41 +1,54 @@
-package com.qtechie.ghausiyamaktab;
+package com.qtechie.ghausiyamaktab.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eyalbira.loadingdots.LoadingDots;
-import com.victor.loading.book.BookLoading;
+import com.qtechie.ghausiyamaktab.R;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText txt_passcode;
     TextInputLayout txt_passcode_txtInputLayout;
     LoadingDots dots_progressbar;
+    FloatingActionButton fab_login;
     //BookLoading bookLoading_progressbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            setContentView(R.layout.activity_main);
-            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            setContentView(R.layout.activity_login);
 
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                w.setStatusBarColor(Color.parseColor("#86b300"));//colored status bar
+            }
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);  //for making it totally transparent
+            }
             txt_passcode_txtInputLayout= (TextInputLayout) findViewById(R.id.txt_passcode_txtInputLayout);
             txt_passcode = (EditText) findViewById(R.id.txt_passcode);
-           // btn_login = (Button) findViewById(R.id.btn_login);
-          //  btn_login.requestFocus();
+
+//            btn_login = (Button) findViewById(R.id.btn_login);
+//            btn_login.requestFocus();
             dots_progressbar = (LoadingDots) findViewById(R.id.dots_progressbar);
             dots_progressbar.setVisibility(View.GONE);
             dots_progressbar.stopAnimation();
@@ -46,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        final FloatingActionButton fab_login = (FloatingActionButton) findViewById(R.id.fab_login);
+        fab_login = (FloatingActionButton) findViewById(R.id.fab_login);
         fab_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow((null==getCurrentFocus())?null:getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+       txt_passcode.clearFocus();
+        fab_login.requestFocus();
+        return super.onTouchEvent(event);
+    }
+
     public void onButtonLogin_Click(final View view) {
 //        bookLoading_progressbar.setVisibility(View.VISIBLE);
 ////        bookLoading_progressbar.start();
@@ -89,29 +111,36 @@ public class MainActivity extends AppCompatActivity {
 
                 String txt=txt_passcode.getText().toString();
                 if(txt.equals("1111"))
-                    Snackbar.make(view, "Looks like u forgot ur passcode!!", Snackbar.LENGTH_LONG).show();
-                else if (txt.equals("kaiser")){
+                {   Snackbar.make(view, "Looks like u forgot ur passcode!!", Snackbar.LENGTH_LONG).show();
+                    //dots_progressbar.setVisibility(View.GONE);
+                    txt_passcode_txtInputLayout.setVisibility(View.VISIBLE);
+                }
+                else if (txt.equals("k")){
                     Snackbar.make(view, "Verified. Logging u in...", Snackbar.LENGTH_LONG).show();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        Toast.makeText(MainActivity.this, "Err:"+e.getMessage(), Toast.LENGTH_SHORT).show();;
-                    }
-                    Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        Toast.makeText(LoginActivity.this, "Err:"+e.getMessage(), Toast.LENGTH_SHORT).show();;
+//                    }
+
+                    Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     startActivity(intent);
+                    finish();
+                    //dots_progressbar.setVisibility(View.GONE);
                 }
                 else
-                    Snackbar.make(view, "Authentication Failed. Give it a one more try...", Snackbar.LENGTH_LONG).show();
+                {Snackbar.make(view, "Authentication Failed. Give it a one more try...", Snackbar.LENGTH_LONG).show();
+                 //   dots_progressbar.setVisibility(View.GONE);
+                    txt_passcode_txtInputLayout.setVisibility(View.VISIBLE);}
+
+
 
                 dots_progressbar.setVisibility(View.GONE);
-                txt_passcode_txtInputLayout.setVisibility(View.VISIBLE);
-
-
-                //MainActivity.this.finish();
+                //LoginActivity.this.finish();
                 //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
-        }, 4000);
+        }, 3500);
 
 
 

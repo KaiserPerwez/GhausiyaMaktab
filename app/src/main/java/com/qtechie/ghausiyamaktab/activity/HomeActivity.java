@@ -1,5 +1,7 @@
-package com.qtechie.ghausiyamaktab;
+package com.qtechie.ghausiyamaktab.activity;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,34 +11,44 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
+import android.text.SpannableString;
+import android.text.style.TextAppearanceSpan;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.qtechie.ghausiyamaktab.utils.CustomUtils;
+import com.qtechie.ghausiyamaktab.adapters.ListviewAttendanceAdapter;
+import com.qtechie.ghausiyamaktab.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.qtechie.ghausiyamaktab.Constant.FIRST_COLUMN;
-import static com.qtechie.ghausiyamaktab.Constant.SECOND_COLUMN;
+import static com.qtechie.ghausiyamaktab.adapters.ListviewAttendanceAdapter.FIRST_COLUMN;
+import static com.qtechie.ghausiyamaktab.adapters.ListviewAttendanceAdapter.SECOND_COLUMN;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ArrayList<HashMap> list;
+    Menu menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //animate changing of activities
         setContentView(R.layout.activity_home);
+        Window w = getWindow(); // in Activity's onCreate() for instance
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            w.setStatusBarColor(Color.parseColor("#aa86b300"));//colored status bar
+        }
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);  //for making it totally transparent
+        }
 
 //        try {
 //            ViewGroup decorView = (ViewGroup) this.getWindow().getDecorView();
@@ -60,7 +72,8 @@ public class HomeActivity extends AppCompatActivity
         final MaterialSpinner spinner_mainClass = (MaterialSpinner) findViewById(R.id.spinner_mainClass);
         final MaterialSpinner spinner_subClass = (MaterialSpinner) findViewById(R.id.spinner_subClass);
         //--prepare items
-        spinner_mainClass.setItems("FarzUloom", "Bahar-e-Shariyat", "Quran o Hadith", "Ilm e Nahw o Sarf", "Faizane Murshid","Faizane DI");
+       // spinner_mainClass.setItems("FarzUloom", "Bahar-e-Shariyat", "Quran o Hadith", "Ilm e Nahw o Sarf", "Faizane Murshid","Faizane DI");
+        spinner_mainClass.setItems("Analytics", "Bussiness Studies", "Commerce", "Data Mining", "E-Commerce");
         items_of_subClass.clear();
         items_of_subClass.add("For Kids");
         for (int i = 0; i <5 ; i++) {
@@ -97,73 +110,22 @@ public class HomeActivity extends AppCompatActivity
         lview.setAdapter(adapter);
 
 
+        LayoutInflater inflater =  this.getLayoutInflater();
+        View foldingCellView=inflater.inflate(R.layout.attendance_list_item, null);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //Toast.makeText(this, ""+fc.getId(), Toast.LENGTH_SHORT).show();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.setTitle("USERNAME,"+CustomUtils.getCurrentTimeHHMMSS());//title bar text with username and login time
-
+        //this.setTitle("USERNAME,"+ CustomUtils.getCurrentTimeHHMMSS());//title bar text with username and login time
+        this.setTitle("");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Hey FOOL!!!. Don't poke me like that", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -176,9 +138,28 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+        navigationView.getChildAt(0).setVerticalScrollBarEnabled(false);//remove scroll
+        menu = navigationView.getMenu();
 
+        MenuItem item_home= menu.findItem(R.id.nav_home_main);
+        MenuItem item_student= menu.findItem(R.id.nav_student_main);
+        MenuItem item_member= menu.findItem(R.id.nav_member_main);
+        MenuItem item_account= menu.findItem(R.id.nav_accounts_main);
+        MenuItem item_others= menu.findItem(R.id.nav_others_main);
+        modifyNavDrawerMenuTitle(item_home);
+        modifyNavDrawerMenuTitle(item_student);
+        modifyNavDrawerMenuTitle(item_member);
+        modifyNavDrawerMenuTitle(item_account);
+        modifyNavDrawerMenuTitle(item_others);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+private void modifyNavDrawerMenuTitle(MenuItem item){
+    SpannableString s = new SpannableString(item.getTitle());
+    s.setSpan(new TextAppearanceSpan(this, R.style.TextAppearance4navDrawerMenuTitle), 0, s.length(), 0);
+    item.setTitle(s);
+}
     private void populateList() {
         list = new ArrayList<HashMap>();
 int i=0;
@@ -226,11 +207,6 @@ int i=0;
         list.add(temp5);
     }
 
-//    @Override
-//    protected void onSavedInstanceState(Bundle outState){
-//    super.onSaveInstanceState(outState);
-//        //outState.putInt("key_spinner",items_of_subClass);
-//    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -269,19 +245,25 @@ int i=0;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_student_main) {
+            boolean b=!menu.findItem(R.id.nav_student_attend).isVisible();
+            menu.findItem(R.id.nav_student_attend).setVisible(b);
+            menu.findItem(R.id.nav_student_regd).setVisible(b);
+            menu.findItem(R.id.nav_student_search).setVisible(b);
+            return true;
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
+        //else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

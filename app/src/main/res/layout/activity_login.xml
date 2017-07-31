@@ -8,9 +8,8 @@
     android:gravity="center"
     android:background="@drawable/circle_green"
     android:elevation="2dp"
-    tools:context=".MainActivity"
+    tools:context=".activity.LoginActivity"
     android:focusableInTouchMode="true"><!-- to remove auto focus on textview -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -18,8 +17,31 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="-50dp">
 
+        <!--<com.github.florent37.materialtextfield.MaterialTextField-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:mtf_image="@drawable/user"-->
+            <!--app:mtf_cardCollapsedHeight="1dp"-->
+            <!--app:mtf_animationDuration="1000"-->
+            <!--app:mtf_openKeyboardOnFocus="true">-->
+
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:backgroundTint="@color/green_forest"-->
+                <!--android:fadingEdge="horizontal"-->
+                <!--android:hint="Enter Passcode"-->
+                <!--android:inputType="textPassword"-->
+                <!--android:textColorHint="#666"-->
+                <!--android:gravity="center"-->
+                <!--android:textCursorDrawable="@null"-->
+                <!--android:textSize="20sp"-->
+                <!--tools:pointerIcon="hand"/>-->
+
+        <!--</com.github.florent37.materialtextfield.MaterialTextField>-->
 
             <!--<EditText-->
                 <!--android:id="@+id/password"-->
@@ -65,8 +87,7 @@
                 android:textCursorDrawable="@null"
                 android:textDirection="ltr"
                 android:textSize="23sp"
-                tools:pointerIcon="hand"
-                android:textStyle="bold"/>
+                tools:pointerIcon="hand"/>
         </android.support.design.widget.TextInputLayout>
         <!--<Button-->
             <!--android:id="@+id/btn_login"-->
@@ -96,7 +117,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:padding="20dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginTop="-50dp">
 
         <com.eyalbira.loadingdots.LoadingDots xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/dots_progressbar"

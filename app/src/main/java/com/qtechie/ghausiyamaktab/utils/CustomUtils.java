@@ -1,4 +1,4 @@
-package com.qtechie.ghausiyamaktab;
+package com.qtechie.ghausiyamaktab.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

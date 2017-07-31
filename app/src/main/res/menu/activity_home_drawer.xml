@@ -1,36 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:checkableBehavior="single"
+    android:id="@+id/menu_layout">
+    <item
+        android:id="@+id/nav_home_main"
+        android:title="Dashboard">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_home"
+                android:icon="@drawable/home"
+                android:title="Home"/>
+        </menu>
+        </item>
+    <item android:title="Student's World"
+        android:id="@+id/nav_student_main">
+        <menu>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_student_attend"
+                android:icon="@drawable/book"
+                android:title="Attendance Today" />
+            <item
+                android:id="@+id/nav_student_regd"
+                android:icon="@drawable/add_user"
+                android:title="Student Registration" />
+            <item
+                android:id="@+id/nav_student_search"
+                android:icon="@drawable/search"
+                android:title="Student's Detail" />
         </menu>
     </item>
-
+    <item android:title="Member's World"
+        android:id="@+id/nav_member_main">
+        <menu>
+            <item
+                android:id="@+id/nav_member_desposit"
+                android:icon="@drawable/book"
+                android:title="Deposit Summary" />
+            <item
+                android:id="@+id/nav_member_regd"
+                android:icon="@drawable/ic_card_membership_white_48dp"
+                android:title="Member Registration" />
+            <item
+                android:id="@+id/nav_member_search"
+                android:icon="@drawable/search"
+                android:title="Search Member's Detail" />
+        </menu>
+    </item>
+    <item android:title="Accounts"
+        android:id="@+id/nav_accounts_main">
+        <menu>
+            <item
+                android:id="@+id/nav_accounts_overview"
+                android:icon="@drawable/money"
+                android:title="Overview" />
+            <item
+                android:id="@+id/nav_accounts_income"
+                android:icon="@drawable/income"
+                android:title="Income" />
+            <item
+                android:id="@+id/nav_accounts_expense"
+                android:icon="@drawable/expense"
+                android:title="Expenses" />
+        </menu>
+    </item>
+    <item android:title="Others"
+        android:id="@+id/nav_others_main">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/exit"
+                android:title="Exit" />
+        </menu>
+    </item>
 </menu>

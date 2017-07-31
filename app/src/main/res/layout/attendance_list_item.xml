@@ -1,43 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ramotion.foldingcell.FoldingCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/folding_cell"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="10"
-    android:id="@+id/attendance_list_item"
-    android:gravity="bottom">
-
-    <TextView
-        android:id="@+id/txt_roll"
-        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    app:animationDuration="1200"
+    app:backSideColor="#bb669900"
+    app:additionalFlipsCount="0"
+    app:cameraHeight="30">
+    <FrameLayout
+        android:id="@+id/cell_content_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_weight="1"
-        android:text="1"
-        android:textColor="@android:color/white"
-        android:gravity="left"
-        android:textSize="15dp"/>
+        android:background="#aa669900"
+        android:visibility="gone">
+        <RelativeLayout
+           android:layout_width="110dp"
+           android:layout_height="110dp"
+           android:layout_gravity="end"
+           android:layout_marginRight="20dp"
+           android:layout_marginTop="40dp">
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@drawable/stripez"/>
+       </RelativeLayout>
 
-    <TextView
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="8.8"
-        android:text="TextView"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:textSize="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:weightSum="10">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        style="@android:style/Widget.Holo.CompoundButton.CheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_weight="0.5"
-        android:height="12dp"
-        android:checked="true"
-        android:gravity="right|bottom"
-        android:buttonTint="@android:color/white"/>
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:text="@string/admission_no_658"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txt_name_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Name : Saddam Hussain"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Class: Facts on Geo"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Sub-Class: Kids"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Absents: 6,9,17,25 of July"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Father's Name: Md. Saeed Khan"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Contact: 9876543210"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Address: Mahatab Road,Block-6/27,Rkl-769001"
+                android:textColor="@android:color/white"
+                android:textSize="10dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:text="  Report Guardian  "
+                    android:textSize="10dp"
+                    android:textColor="@android:color/white"
+                    android:background="#88000000"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text=" Report Mgmt "
+                    android:textSize="10dp"
+                    android:textColor="@android:color/white"
+                    android:background="#88000000"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/cell_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/attendance_list_item"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/txt_roll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:paddingLeft="10dp"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="8.8"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                style="@android:style/Widget.Holo.CompoundButton.CheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:layout_weight="0.5"
+                android:height="12dp"
+                android:buttonTint="@android:color/white"
+                android:checked="true"
+                android:gravity="right|bottom" />
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+</com.ramotion.foldingcell.FoldingCell>

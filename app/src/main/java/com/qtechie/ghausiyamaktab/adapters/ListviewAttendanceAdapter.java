@@ -1,4 +1,4 @@
-package com.qtechie.ghausiyamaktab;
+package com.qtechie.ghausiyamaktab.adapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,17 +7,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.qtechie.ghausiyamaktab.R;
+import com.qtechie.ghausiyamaktab.activity.HomeActivity;
+import com.ramotion.foldingcell.FoldingCell;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static com.qtechie.ghausiyamaktab.Constant.FIRST_COLUMN;
-import static com.qtechie.ghausiyamaktab.Constant.SECOND_COLUMN;
 
 /**
  * Created by Kaiser on 02-07-2017.
  */
 
 public class ListviewAttendanceAdapter extends BaseAdapter {
+    public static final String FIRST_COLUMN = "First";
+    public static final String SECOND_COLUMN = "Second";
+    public static final String THIRD_COLUMN = "Third";
+    public static final String FOURTH_COLUMN = "Fourth";
 
     public ArrayList<HashMap> list;
     Activity activity;
@@ -45,6 +50,7 @@ public class ListviewAttendanceAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView txtFirst;
         TextView txtSecond;
+        TextView txt_name_copy;
         //TextView txtThird;
         //TextView txtFourth;
     }
@@ -59,8 +65,18 @@ public class ListviewAttendanceAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.txtFirst = (TextView) convertView.findViewById(R.id.txt_roll);
             holder.txtSecond = (TextView) convertView.findViewById(R.id.txt_name);
+            holder.txt_name_copy= (TextView) convertView.findViewById(R.id.txt_name_copy);
            // holder.txtThird = (TextView) convertView.findViewById(R.id.ThirdText);
             //holder.txtFourth = (TextView) convertView.findViewById(R.id.FourthText);
+            // get our folding cell
+            final FoldingCell fc = (FoldingCell) convertView.findViewById(R.id.folding_cell);
+            // attach click listener to folding cell
+            fc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fc.toggle(false);
+                }
+            });
             convertView.setTag(holder);
         }
         else
@@ -71,6 +87,7 @@ public class ListviewAttendanceAdapter extends BaseAdapter {
         HashMap map = list.get(position);
         holder.txtFirst.setText(map.get(FIRST_COLUMN).toString());
         holder.txtSecond.setText(map.get(SECOND_COLUMN).toString());
+        holder.txt_name_copy.setText("Name: "+map.get(SECOND_COLUMN).toString());
         //holder.txtThird.setText(map.get(THIRD_COLUMN));
         //holder.txtFourth.setText(map.get(FOURTH_COLUMN));
 
@@ -82,10 +99,4 @@ class AttendanceModelClass{
     public String sl_no;//serial num
     public String name;
     //public CheckBox checkBox;
-}
-class Constant {
-    public static final String FIRST_COLUMN = "First";
-    public static final String SECOND_COLUMN = "Second";
-    public static final String THIRD_COLUMN = "Third";
-    public static final String FOURTH_COLUMN = "Fourth";
 }
